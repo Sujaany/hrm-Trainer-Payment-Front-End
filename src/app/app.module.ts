@@ -13,7 +13,8 @@ import { AccountantPaymentViewComponent } from './PaymentIni/accountant-payment-
 import { HrPaymentViewComponent } from './PaymentIni/hr-payment-view/hr-payment-view.component';
 import { AddTrainingScheduleComponent } from './PaymentIni/add-training-schedule/add-training-schedule.component';
 import { ViewTrainingScheduleComponent } from './PaymentIni/view-training-schedule/view-training-schedule.component';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
     declarations: [
     AppComponent,
@@ -31,7 +32,9 @@ import { ViewTrainingScheduleComponent } from './PaymentIni/view-training-schedu
   
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

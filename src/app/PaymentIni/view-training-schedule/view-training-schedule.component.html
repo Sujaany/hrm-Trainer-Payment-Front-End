@@ -1,3 +1,75 @@
-<p>
-  view-training-schedule works!
-</p>
+<div class="row">
+  <div class="col-md-10 col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">View Training Schedule</div>
+      <!-- /.panel-heading -->
+      <div class="panel-body">
+        <div class="table-responsive">
+          <table class="table table-hover" st-pipe="callServer" st-table="displayed">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Training Topic</th>
+                <th>Attend Date</th>
+                <th>Total Time</th>
+                <th>Status</th>
+                <th>Amount</th>
+                <th>Trainer Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody ng-show="!isLoading" *ngFor="let training of trainingSchedule">
+              <tr *ngIf="training.trainer.id==1">
+
+                <td>{{training.id}}</td>
+                <td>{{training.trainingTopic}}</td>
+                <td>{{training.date | date:"dd:MM:yyyy"}}</td>
+                <td>{{training.totalCoveredhours}}</td>
+                <td>{{training.status}}</td>
+                <td>{{training.amountToPaid}}</td>
+                <td>{{training.trainer.id}}</td>
+                <td *ngIf="training.status=='DEPOSITED'">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#model" (click)=" getTrainingScheduleId(training)">Confirm</button>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+</div>
+
+
+<div class="modal fade" id="model" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirmation</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <tbody ng-show="!isLoading">
+              
+              <tr>Training Topic : {{payment.id}}</tr>
+              <tr>Date : {{payment.dateOfPayment | date:"dd:MM:yyyy"}}</tr>
+              <tr>Amount : {{payment.amount}}</tr>
+              <tr>Invoice : {{payment.invoiceNo}}</tr> 
+           
+          </tbody>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="paymentCompleted()">Yes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" >No</button>
+      </div>
+    </div>
+
+  </div>
+</div>
